@@ -1,10 +1,10 @@
 from maze_env import Maze
 from RL_brain import DeepQNetwork
-
+from RL_brain_torch import DeepQNetworkTorch
 
 def run_maze():
     step = 0
-    for episode in range(300):
+    for episode in range(10000):
         # initial observation
         observation = env.reset()
 
@@ -39,14 +39,15 @@ def run_maze():
 if __name__ == "__main__":
     # maze game
     env = Maze()
-    RL = DeepQNetwork(env.n_actions, env.n_features,
-                      learning_rate=0.01,
-                      reward_decay=0.9,
-                      e_greedy=0.9,
-                      replace_target_iter=200,
-                      memory_size=2000,
-                      # output_graph=True
-                      )
+    # RL = DeepQNetwork(env.n_actions, env.n_features,
+    #                   learning_rate=0.01,
+    #                   reward_decay=0.9,
+    #                   e_greedy=0.9,
+    #                   replace_target_iter=200,
+    #                   memory_size=2000,
+    #                   # output_graph=True
+    #                   )
+    RL = DeepQNetworkTorch(env.n_actions, env.n_features)
     env.after(100, run_maze)
     env.mainloop()
     RL.plot_cost()

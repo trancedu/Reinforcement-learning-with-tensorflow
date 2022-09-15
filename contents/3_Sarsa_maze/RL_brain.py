@@ -71,6 +71,7 @@ class SarsaTable(RL):
         self.check_state_exist(s_)
         q_predict = self.q_table.loc[s, a]
         if s_ != 'terminal':
+            # Here the action a_ may not be the best action in the next state s_, but it is the action we choose in the next state s_.
             q_target = r + self.gamma * self.q_table.loc[s_, a_]  # next state is not terminal
         else:
             q_target = r  # next state is terminal

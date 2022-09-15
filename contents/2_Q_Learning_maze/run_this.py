@@ -30,10 +30,18 @@ def update():
 
             # RL take action and get next observation and reward
             observation_, reward, done = env.step(action)
-
+            
+            # Print the Q-table
+            # print("Before learning:")
+            # print(RL.q_table)
+            
             # RL learn from this transition
             RL.learn(str(observation), action, reward, str(observation_))
 
+            # Print the Q-table
+            # print("After learning:")
+            # print(RL.q_table)
+            
             # swap observation
             observation = observation_
 
