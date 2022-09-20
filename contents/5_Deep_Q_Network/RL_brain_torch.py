@@ -46,7 +46,7 @@ class DeepQNetworkTorch(object):
         self.optimizer = torch.optim.Adam(self.eval_net.parameters(), lr=LR)
         self.loss_func = nn.MSELoss()
         self.cost_his = []
-        
+    
     def choose_action(self, x):
         x = Variable(torch.unsqueeze(torch.FloatTensor(x), 0))
         if np.random.uniform() < EPSILON:
